@@ -62,3 +62,23 @@ func ExampleNewDeviceDetector() {
 	// Output:
 	// {"client":{"type":"browser","name":"Chrome Mobile","version":"41.0","engine":"Blink","engineVersion":""},"os":{"name":"Android","version":"6.0","platform":""},"device":{"type":"smartphone","brand":"Google","model":"Nexus 5X"},"bot":null}
 }
+
+func TestNewBotDetector(t *testing.T) {
+	userAgent := "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1 (compatible; AdsBot-Google-Mobile; +http://www.google.com/mobile/adsbot.html)"
+	detector, err := NewBotDetector(DeviceDetectorOptions{})
+	if err != nil {
+		t.Errorf("failed to create device detector: %v", err)
+	}
+	result, err := detector.Parse(userAgent)
+	if err != nil {
+		t.Errorf("failed to parse user agent: %v", err)
+	}
+	if result == nil {
+		t.Errorf("result is nil")
+	}
+	if result == "" {
+		t.Errorf("result is empty")
+	}
+
+	fmt.Printf("%s\n", result)
+}

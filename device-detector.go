@@ -16,7 +16,7 @@ type Parser struct {
 }
 
 // initContext initializes a v8 context from compiled device-detector-js library.
-func initContext(source string) (*v8.Context, error) {
+func initContext() (*v8.Context, error) {
 	file, err := ioutil.ReadFile("build/dist/device-detector.js")
 	if err != nil {
 		log.Fatalf("failed to read file: %v", err)
@@ -26,24 +26,22 @@ func initContext(source string) (*v8.Context, error) {
 	src = strings.TrimPrefix(src, "(() => {\n")
 	src = strings.TrimSuffix(src, "\n})();\n")
 	src = src + "\n" + `DeviceDetector = new require_src()`
+	src = src + "\n" + `BotDetector = new require_bot()`
 
 	ctx := v8.NewContext()
 	_, e := ctx.RunScript(src+"\n", "h.js")
 	if e != nil {
 		return nil, e
 	}
-	if source != "" {
-		_, e := ctx.RunScript("\n"+source, "h.js")
-		if e != nil {
-			return nil, e
-		}
-	}
 	return ctx, nil
 }
 
 // NewDeviceDetector creates a new device detector.
 func NewDeviceDetector(options DeviceDetectorOptions) (parser Parser, err error) {
-	ctx, err := initContext(`this.d = new DeviceDetector();`)
+	ctx, err := initContext()
+	if err != nil {
+		return
+	}
 	class, _ := ctx.Global().Get("DeviceDetector")
 	classTmp, _ := class.Object().AsFunction()
 	instance, err := classTmp.NewInstance(v8.Undefined(v8.NewIsolate()))
@@ -62,8 +60,26 @@ func NewDeviceDetector(options DeviceDetectorOptions) (parser Parser, err error)
 }
 
 // NewBotDetector creates a new bot detector with options.
-func NewBotDetector(options DeviceDetectorOptions) (parser Parser) {
-	panic("not implemented")
+func NewBotDetector(options DeviceDetectorOptions) (parser Parser, err error) {
+	ctx, err := initContext()
+	if err != nil {
+		return
+	}
+	class, _ := ctx.Global().Get("BotDetector")
+	classTmp, _ := class.Object().AsFunction()
+	instance, err := classTmp.NewInstance(v8.Undefined(v8.NewIsolate()))
+	return Parser{
+		options: options,
+		ctx:     ctx,
+		Parse: func(userAgent string) (result interface{}, err error) {
+			ctx.Global().Set("userAgent", userAgent)
+			parse, _ := instance.Object().Get("parse")
+			res, _ := parse.AsFunction()
+			ua, _ := ctx.Global().Get("userAgent")
+			r, _ := res.Call(v8.Undefined(ctx.Isolate()), ua)
+			return r.Object().MarshalJSON()
+		},
+	}, err
 }
 
 // NewDeviceParser creates a new device parser with options
