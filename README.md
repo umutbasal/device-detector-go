@@ -1,5 +1,10 @@
 # device-detector-go
 
+[![GitHub issues](https://img.shields.io/github/issues/umutbasal/device-detector-go)](https://github.com/umutbasal/device-detector-go/issues)
+[![GitHub stars](https://img.shields.io/github/stars/umutbasal/device-detector-go)](https://github.com/umutbasal/device-detector-go/stargazers)
+[![GitHub license](https://img.shields.io/github/license/umutbasal/device-detector-go)](https://github.com/umutbasal/device-detector-go/blob/main/LICENSE)
+
+
 Device-detector-go is a precise user agent parser and device detector written in Golang, backed by the largest and most up-to-date open-source user agent database and library written js.
 
 Device-detector-go will parse any user agent and detect the browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), brand and model. Works with go and in the browser.
