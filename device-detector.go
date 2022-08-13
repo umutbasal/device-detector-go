@@ -48,19 +48,19 @@ type DeviceType string
 
 const (
 	DeviceTypeDesktop             DeviceType = "desktop"
-	DeviceTypeSmartphone                     = "smartphone"
-	DeviceTypeTablet                         = "tablet"
-	DeviceTypeTelevision                     = "television"
-	DeviceTypeSmartDisplay                   = "smart display"
-	DeviceTypeCamera                         = "camera"
-	DeviceTypeCar                            = "car"
-	DeviceTypeConsole                        = "console"
-	DeviceTypePortableMediaPlayer            = "portable media player"
-	DeviceTypePhablet                        = "phablet"
-	DeviceTypeWearable                       = "wearable"
-	DeviceTypeSmartSpeaker                   = "smart speaker"
-	DeviceTypeFeaturePhone                   = "feature phone"
-	DeviceTypePeripheral                     = "peripheral"
+	DeviceTypeSmartphone          DeviceType = "smartphone"
+	DeviceTypeTablet              DeviceType = "tablet"
+	DeviceTypeTelevision          DeviceType = "television"
+	DeviceTypeSmartDisplay        DeviceType = "smart display"
+	DeviceTypeCamera              DeviceType = "camera"
+	DeviceTypeCar                 DeviceType = "car"
+	DeviceTypeConsole             DeviceType = "console"
+	DeviceTypePortableMediaPlayer DeviceType = "portable media player"
+	DeviceTypePhablet             DeviceType = "phablet"
+	DeviceTypeWearable            DeviceType = "wearable"
+	DeviceTypeSmartSpeaker        DeviceType = "smart speaker"
+	DeviceTypeFeaturePhone        DeviceType = "feature phone"
+	DeviceTypePeripheral          DeviceType = "peripheral"
 )
 
 type OperatingSystemResult struct {

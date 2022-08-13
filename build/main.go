@@ -26,6 +26,6 @@ func main() {
 		Format:      esbuild.FormatIIFE,
 	})
 	if len(bundleContent.OutputFiles) == 0 {
-		log.Fatalf("no output files%s", bundleContent.Errors)
+		log.Fatalf("no output files: %v", bundleContent.Errors)
 	}
 }
