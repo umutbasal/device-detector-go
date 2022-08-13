@@ -25,8 +25,14 @@ func initContext() (*v8.Context, error) {
 	src = strings.TrimPrefix(src, `"use strict";`+"\n")
 	src = strings.TrimPrefix(src, "(() => {\n")
 	src = strings.TrimSuffix(src, "\n})();\n")
+
+	// Todo: take these from New_ functions nad run with native v8 apis. or export all funcs to global var with regexp replace.
 	src = src + "\n" + `DeviceDetector = new require_src()`
 	src = src + "\n" + `BotDetector = new require_bot()`
+	// src = src + "\n" + `ClientParser_ = new init_client()`
+	// src = src + "\n" + `DeviceParser = new init_device()`
+	// src = src + "\n" + `OperatingSystemParser_ = new init_operating_system2()`
+	// src = src + "\n" + `VendorFragmentParser_ = new init_vendor_fragment()`
 
 	ctx := v8.NewContext()
 	_, e := ctx.RunScript(src+"\n", "h.js")
@@ -35,6 +41,9 @@ func initContext() (*v8.Context, error) {
 	}
 	return ctx, nil
 }
+
+// TODO: clear duplicated code.
+// TODO: use types.
 
 // NewDeviceDetector creates a new device detector.
 func NewDeviceDetector(options DeviceDetectorOptions) (parser Parser, err error) {
