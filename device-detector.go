@@ -142,7 +142,7 @@ func NewDeviceDetector2(options DeviceDetectorOptions) (parser Parser, err error
 	}, err
 }
 
-func NewBotParser(options DeviceDetectorOptions) (parser Parser) {
+func NewBotDetector(options DeviceDetectorOptions) (parser Parser) {
 	panic("not implemented")
 }
 
