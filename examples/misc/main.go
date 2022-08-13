@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	devicedetector "github.com/umutbasal/devicedetector-go"
+	devicedetector "github.com/umutbasal/device-detector-go"
 )
 
 func main() {
