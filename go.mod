@@ -1,4 +1,4 @@
-module github.com/umutbasal/devicedetector-go
+module github.com/umutbasal/device-detector-go
 
 go 1.18
 
