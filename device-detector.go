@@ -33,7 +33,7 @@ func initContext(source string) (*v8.Context, error) {
 		return nil, e
 	}
 	if source != "" {
-		_, e := ctx.RunScript(source, "h.js")
+		_, e := ctx.RunScript("\n"+source, "h.js")
 		if e != nil {
 			return nil, e
 		}
@@ -48,7 +48,8 @@ func NewDeviceDetector(options DeviceDetectorOptions) (parser Parser, err error)
 		options: options,
 		ctx:     ctx,
 		Parse: func(userAgent string) (result interface{}, err error) {
-			script := "\n" + `JSON.stringify(d.parse("` + userAgent + `"))`
+			ctx.Global().Set("userAgent", userAgent)
+			script := `JSON.stringify(d.parse(userAgent))`
 			r, e := ctx.RunScript(script, "h.js")
 			if e != nil {
 				return nil, e
