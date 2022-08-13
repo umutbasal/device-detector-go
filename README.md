@@ -22,7 +22,7 @@ package/device-detector-go)
 To use device-detector-go in your project, run:
 
 ```bash
-go get device-detector-go
+go get github.com/umutbasal/device-detector-go
 ```
 
 ### Usage
