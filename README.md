@@ -27,7 +27,7 @@ go get github.com/umutbasal/device-detector-go
 
 ### Usage
 
-##### GO import
+#### GO import
 
 ```go
 import (
