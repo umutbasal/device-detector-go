@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	// ! NO INSTALLATION IS REQUIRED FOR NOW !
 	// run npm install in the project directory
 	// exec := exec.Command("npm", "install", "--legacy-peer-deps")
 	// exec.Dir = "./device-detector-js"
