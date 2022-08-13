@@ -1,15 +1,14 @@
 # device-detector-go
 
-## Use it with caution
-
-Pkg is too new and passes every input in to v8 engine's context. And user-agents could be used to inject.
+    !! Use it with caution
+    Pkg is too new and passes every input in to v8 engine's context. And user-agents could be used to inject.
 
 Device-detector-go is a precise user agent parser and device detector written in Golang, backed by the largest and most up-to-date open-source user agent database and library written js.
 
 Device-detector-go will parse any user agent and detect the browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), brand and model. Works with go and in the browser.
 
- This library uses [device-detector-js](https://github.com/etienne-martin/device-detector-js) and originial library maintainer says;
- This library is heavily tested and relies on over 10,000 tests to detect thousands of user agent strings, even from rare and obscure browsers and devices.
+    This library uses [device-detector-js](https://github.com/etienne-martin/device-detector-js) and originial library maintainer says;
+    This library is heavily tested and relies on over 10,000 tests to detect thousands of user agent strings, even from rare and obscure browsers and devices.
 
 This is a go port of [device-detector-js](https://github.com/etienne-martin/device-detector-js) (uses this library in v8 engine directly and exports logics) and relatively based on [Matomo device-detector](https://github.com/matomo-org/device-detector) rules
 
