@@ -43,18 +43,20 @@ func initContext(source string) (*v8.Context, error) {
 
 // NewDeviceDetector creates a new device detector.
 func NewDeviceDetector(options DeviceDetectorOptions) (parser Parser, err error) {
-	ctx, err := initContext(`let d = new DeviceDetector();`)
+	ctx, err := initContext(`this.d = new DeviceDetector();`)
+	class, _ := ctx.Global().Get("DeviceDetector")
+	classTmp, _ := class.Object().AsFunction()
+	instance, err := classTmp.NewInstance(v8.Undefined(v8.NewIsolate()))
 	return Parser{
 		options: options,
 		ctx:     ctx,
 		Parse: func(userAgent string) (result interface{}, err error) {
 			ctx.Global().Set("userAgent", userAgent)
-			script := `JSON.stringify(d.parse(userAgent))`
-			r, e := ctx.RunScript(script, "h.js")
-			if e != nil {
-				return nil, e
-			}
-			return r.String(), nil
+			parse, _ := instance.Object().Get("parse")
+			res, _ := parse.AsFunction()
+			ua, _ := ctx.Global().Get("userAgent")
+			r, _ := res.Call(v8.Undefined(ctx.Isolate()), ua)
+			return r.Object().MarshalJSON()
 		},
 	}, err
 }
