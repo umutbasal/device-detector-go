@@ -11,9 +11,7 @@ This is a go port of [device-detector-js](https://github.com/etienne-martin/devi
 
 ## Why this project
 
-There is too many go user agent parsers, but none of them has powerful rules as [Matomo device-detector](https://github.com/matomo-org/device-detector) and there is only one golang port of matomo ([detector gamebtc/devicedetector](https://github.com/gamebtc/devicedetector)), but this one wzorks heavy like 40ms. This is too much. This projects aim is using speed of the nodejs repo. And not implement the go version from scratch.
-
-package/device-detector-go)
+There is too many go user agent parsers, but none of them has powerful rules as [Matomo device-detector](https://github.com/matomo-org/device-detector) and there is only one golang port of matomo ([detector gamebtc/devicedetector](https://github.com/gamebtc/devicedetector)), but this one works heavy like 40ms. This is too much. This projects aim is using speed of the nodejs repo. And not implement the go version from scratch.
 
 ## Getting Started
 
