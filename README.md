@@ -41,22 +41,22 @@ import (
 
 ```go
 import (
- devicedetector "github.com/umutbasal/device-detector-go"
+  devicedetector "github.com/umutbasal/device-detector-go"
 )
 
 func main() {
- userAgent := "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36"
- detector, err := devicedetector.NewDeviceDetector(devicedetector.DeviceDetectorOptions{})
- if err != nil {
-  panic(err)
- }
- result, err := detector.Parse(user)
- if err != nil {
-  panic(err)
- }
+  userAgent := "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36"
+  detector, err := devicedetector.NewDeviceDetector(devicedetector.DeviceDetectorOptions{})
+  if err != nil {
+    panic(err)
+  }
+  result, err := detector.Parse(user)
+  if err != nil {
+    panic(err)
+  }
 
- fmt.Printf("%s\n", result)
- 
+  fmt.Printf("%s\n", result)
+
 }
 ```
 
@@ -64,24 +64,24 @@ Output:
 
 ```json
 {
-  "client": {
-    "type": "browser",
-    "name": "Chrome",
-    "version": "69.0",
-    "engine": "Blink",
-    "engineVersion": ""
-  },
-  "os": {
-    "name": "Mac",
-    "version": "10.13",
-    "platform": ""
-  },
-  "device": {
-    "type": "desktop",
-    "brand": "Apple",
-    "model": ""
-  },
-  "bot": null
+ "client": {
+  "type": "browser",
+  "name": "Chrome Mobile",
+  "version": "41.0",
+  "engine": "Blink",
+  "engineVersion": ""
+ },
+ "os": {
+  "name": "Android",
+  "version": "6.0",
+  "platform": ""
+ },
+ "device": {
+  "type": "smartphone",
+  "brand": "Google",
+  "model": "Nexus 5X"
+ },
+ "bot": null
 }
 ```
 
@@ -104,21 +104,20 @@ func main() {
  }
 
  fmt.Printf("%s\n", result)
- 
- 
 }
+```
 
 Output:
 
 ```json
 {
-  "name": "Googlebot",
-  "category": "Search bot",
-  "url": "http://www.google.com/bot.html",
-  "producer": {
-    "name": "Google Inc.",
-    "url": "http://www.google.com"
-  }
+ "name": "Googlebot",
+ "category": "Search bot",
+ "url": "http://www.google.com/bot.html",
+ "producer": {
+  "name": "Google Inc.",
+  "url": "http://www.google.com"
+ }
 }
 ```
 
