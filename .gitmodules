@@ -1,0 +1,3 @@
+[submodule "builder/device-detector-js"]
+	path = builder/device-detector-js
+	url = https://github.com/etienne-martin/device-detector-js
