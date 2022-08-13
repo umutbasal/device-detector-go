@@ -1,5 +1,7 @@
 package devicedetector
 
+// This types are based to js library to parse result
+
 type DeviceDetectorOptions struct {
 	SkipBotDetection  bool
 	VersionTruncation VersionTruncation

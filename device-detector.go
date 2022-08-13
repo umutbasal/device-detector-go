@@ -8,12 +8,14 @@ import (
 	v8 "rogchap.com/v8go"
 )
 
+// Parser is a device detector parser.
 type Parser struct {
 	options DeviceDetectorOptions
 	ctx     *v8.Context
 	Parse   func(userAgent string) (result interface{}, err error)
 }
 
+// initContext initializes a v8 context from compiled device-detector-js library.
 func initContext(source string) (*v8.Context, error) {
 	file, err := ioutil.ReadFile("build/dist/device-detector.js")
 	if err != nil {
@@ -39,6 +41,7 @@ func initContext(source string) (*v8.Context, error) {
 	return ctx, nil
 }
 
+// NewDeviceDetector creates a new device detector.
 func NewDeviceDetector(options DeviceDetectorOptions) (parser Parser, err error) {
 	ctx, err := initContext(`let d = new DeviceDetector();`)
 	return Parser{
@@ -55,18 +58,22 @@ func NewDeviceDetector(options DeviceDetectorOptions) (parser Parser, err error)
 	}, err
 }
 
+// NewBotDetector creates a new bot detector with options.
 func NewBotDetector(options DeviceDetectorOptions) (parser Parser) {
 	panic("not implemented")
 }
 
+// NewDeviceParser creates a new device parser with options
 func NewDeviceParser(options DeviceDetectorOptions) (parser Parser) {
 	panic("not implemented")
 }
 
+// NewOperatingSystemParser creates a new operating system parser.
 func NewOperatingSystemParser() (parser Parser) {
 	panic("not implemented")
 }
 
+// NewVendorFragmentParser creates a new vendor fragment parser.
 func NewVendorFragmentParser() (parser Parser) {
 	panic("not implemented")
 }

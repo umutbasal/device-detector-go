@@ -15,6 +15,12 @@ func main() {
 		panic(err)
 	}
 
+	result, err := detector.Parse(userAgent)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%+v\n", result)
+
 	ts := time.Now()
 	for i := 0; i < len(userAgent); i++ {
 		user := userAgents[i]
