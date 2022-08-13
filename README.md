@@ -1,5 +1,10 @@
 # device-detector-go
 
+[![GitHub issues](https://img.shields.io/github/issues/umutbasal/device-detector-go)](https://github.com/umutbasal/device-detector-go/issues)
+[![GitHub stars](https://img.shields.io/github/stars/umutbasal/device-detector-go)](https://github.com/umutbasal/device-detector-go/stargazers)
+[![GitHub license](https://img.shields.io/github/license/umutbasal/device-detector-go)](https://github.com/umutbasal/device-detector-go/blob/main/LICENSE)
+
+
     !! Use it with caution
     Pkg is too new and passes every input in to v8 engine's context. And user-agents could be used to inject.
 
