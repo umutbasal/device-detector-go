@@ -38,17 +38,3 @@ func BenchmarkDeviceDetector(b *testing.B) {
 		}
 	}
 }
-
-func BenchmarkDeviceDetector2(b *testing.B) {
-	userAgent := "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36"
-	detector, err := NewDeviceDetector(DeviceDetectorOptions{})
-	if err != nil {
-		b.Errorf("failed to create device detector: %v", err)
-	}
-	for i := 0; i < b.N; i++ {
-		_, err := detector.Parse(userAgent)
-		if err != nil {
-			b.Errorf("failed to parse user agent: %v", err)
-		}
-	}
-}

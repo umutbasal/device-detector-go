@@ -8,77 +8,6 @@ import (
 	v8 "rogchap.com/v8go"
 )
 
-type DeviceDetectorOptions struct {
-	SkipBotDetection  bool
-	VersionTruncation VersionTruncation
-}
-
-type VersionTruncation int
-
-const (
-	VC VersionTruncation = iota
-	VC1
-	VC2
-	VC3
-)
-
-type DeviceDetectorResult struct {
-	Client ClientResult
-	Device DeviceResult
-	OS     OperatingSystemResult
-	Bot    BotResult
-}
-
-type ClientResult struct {
-	Name          string
-	Version       string
-	Engine        string
-	EngineVersion string
-	Type          string
-	URL           string
-}
-
-type DeviceResult struct {
-	Type  DeviceType
-	Brand string
-	Model string
-}
-
-type DeviceType string
-
-const (
-	DeviceTypeDesktop             DeviceType = "desktop"
-	DeviceTypeSmartphone          DeviceType = "smartphone"
-	DeviceTypeTablet              DeviceType = "tablet"
-	DeviceTypeTelevision          DeviceType = "television"
-	DeviceTypeSmartDisplay        DeviceType = "smart display"
-	DeviceTypeCamera              DeviceType = "camera"
-	DeviceTypeCar                 DeviceType = "car"
-	DeviceTypeConsole             DeviceType = "console"
-	DeviceTypePortableMediaPlayer DeviceType = "portable media player"
-	DeviceTypePhablet             DeviceType = "phablet"
-	DeviceTypeWearable            DeviceType = "wearable"
-	DeviceTypeSmartSpeaker        DeviceType = "smart speaker"
-	DeviceTypeFeaturePhone        DeviceType = "feature phone"
-	DeviceTypePeripheral          DeviceType = "peripheral"
-)
-
-type OperatingSystemResult struct {
-	Name     string
-	Version  string
-	Platform string
-}
-
-type BotResult struct {
-	Name     string
-	Category string
-	URL      string
-	Producer struct {
-		Name string
-		URL  string
-	}
-}
-
 type Parser struct {
 	options DeviceDetectorOptions
 	ctx     *v8.Context
@@ -122,22 +51,6 @@ func NewDeviceDetector(options DeviceDetectorOptions) (parser Parser, err error)
 				return nil, e
 			}
 			return r.String(), nil
-		},
-	}, err
-}
-
-func NewDeviceDetector2(options DeviceDetectorOptions) (parser Parser, err error) {
-	ctx, err := initContext(`let d = new DeviceDetector();`)
-	return Parser{
-		options: options,
-		ctx:     ctx,
-		Parse: func(userAgent string) (result interface{}, err error) {
-			script := "\n" + `d.parse("` + userAgent + `")`
-			r, e := ctx.RunScript(script, "h.js")
-			if e != nil {
-				return nil, e
-			}
-			return r.Object().MarshalJSON()
 		},
 	}, err
 }
