@@ -17,25 +17,25 @@ const (
 )
 
 type DeviceDetectorResult struct {
-	Client ClientResult
-	Device DeviceResult
-	OS     OperatingSystemResult
-	Bot    BotResult
+	Client ClientResult          `json:"client"`
+	Device DeviceResult          `json:"device"`
+	OS     OperatingSystemResult `json:"os"`
+	Bot    BotResult             `json:"bot"`
 }
 
 type ClientResult struct {
-	Name          string
-	Version       string
-	Engine        string
-	EngineVersion string
-	Type          string
-	URL           string
+	Name          string `json:"name"`
+	Version       string `json:"version"`
+	Engine        string `json:"engine"`
+	EngineVersion string `json:"engineVersion"`
+	Type          string `json:"type"`
+	URL           string `json:"url"`
 }
 
 type DeviceResult struct {
-	Type  DeviceType
-	Brand string
-	Model string
+	Type  DeviceType `json:"type"`
+	Brand string     `json:"brand"`
+	Model string     `json:"model"`
 }
 
 type DeviceType string
@@ -58,17 +58,17 @@ const (
 )
 
 type OperatingSystemResult struct {
-	Name     string
-	Version  string
-	Platform string
+	Name     string `json:"name"`
+	Version  string `json:"version"`
+	Platform string `json:"platform"`
 }
 
 type BotResult struct {
-	Name     string
-	Category string
-	URL      string
+	Name     string `json:"name"`
+	Category string `json:"category"`
+	URL      string `json:"url"`
 	Producer struct {
-		Name string
-		URL  string
-	}
+		Name string `json:"name"`
+		URL  string `json:"url"`
+	} `json:"producer"`
 }
