@@ -8,6 +8,8 @@ import (
 	v8 "rogchap.com/v8go"
 )
 
+// TODO: wont work with concurrent reqs design for concurrency
+
 // Parser is a device detector parser.
 type Parser struct {
 	options DeviceDetectorOptions
